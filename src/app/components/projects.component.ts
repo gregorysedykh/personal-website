@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <section id="projects" class="w-full min-h-[calc(100dvh-4.5rem)] py-14">
-      <div class="mx-auto max-w-6xl px-4 sm:px-3">
+      <div class="mx-auto max-w-6xl px-6">
         <div class="mt-3 flex items-center gap-4">
           <i class="pi pi-folder-open !text-[2.25rem] leading-none shrink-0"></i>
           <h2 class="m-0 text-3xl font-semibold text-slate-900 sm:text-4xl">Projects</h2>
