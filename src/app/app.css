@@ -1,0 +1,10 @@
+:host ::ng-deep .site-menubar,
+:host ::ng-deep .site-menubar .p-menubar-root-list {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+:host ::ng-deep .site-menubar {
+  padding: 0 !important;
+}
