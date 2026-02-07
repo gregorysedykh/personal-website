@@ -12,3 +12,237 @@ body {
   padding: 0;
   font-family: "Helvetica", sans-serif;
 }
+
+.page-section {
+  width: 100%;
+  min-height: 100dvh;
+  padding-block: 3.5rem;
+}
+
+.page-section-contrast {
+  background-color: rgb(191 219 254);
+}
+
+.section-container {
+  margin-inline: auto;
+  max-width: 72rem;
+  padding-inline: 1.5rem;
+}
+
+.section-heading {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-heading-icon {
+  flex-shrink: 0;
+  font-size: 2.25rem !important;
+  line-height: 1;
+}
+
+.section-heading-title {
+  margin: 0;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  color: rgb(15 23 42);
+}
+
+.surface-card {
+  border: 1px solid rgb(219 234 254);
+  border-radius: 0.75rem;
+  background-color: rgb(255 255 255);
+  box-shadow: 0 12px 28px -14px rgba(30, 64, 175, 0.45);
+}
+
+.surface-card-soft {
+  border: 1px solid rgb(219 234 254);
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 0.25rem;
+  box-shadow: 0 12px 28px -20px rgba(30, 64, 175, 0.55);
+}
+
+.surface-card-featured {
+  border: 1px solid rgb(219 234 254);
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 0.25rem;
+  box-shadow: 0 14px 34px -18px rgba(30, 64, 175, 0.45);
+}
+
+.location-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgb(51 65 85);
+}
+
+.location-icon {
+  color: rgb(37 99 235);
+}
+
+.timeline-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 5.25rem 1.25rem minmax(0, 1fr);
+  align-items: start;
+  column-gap: 0.75rem;
+  row-gap: 2rem;
+}
+
+.timeline-line {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  margin-inline: auto;
+  width: 1px;
+  height: 100%;
+}
+
+.timeline-line-muted {
+  background-color: rgb(191 219 254);
+}
+
+.timeline-line-strong {
+  background-color: rgb(29 78 216);
+}
+
+.timeline-date {
+  margin-top: 1.25rem;
+  text-align: right;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: rgb(100 116 139);
+}
+
+.timeline-marker {
+  grid-column-start: 2;
+  z-index: 10;
+  margin-inline: auto;
+  margin-top: 1.5rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  background-color: rgb(37 99 235);
+  box-shadow: 0 0 0 4px rgb(239 246 255);
+}
+
+.highlight-box {
+  border: 1px solid rgb(219 234 254);
+  border-radius: 0.5rem;
+  background-color: rgba(239, 246, 255, 0.6);
+  padding: 1rem;
+}
+
+.list-blue {
+  padding-left: 1.25rem;
+  color: rgb(51 65 85);
+  list-style-type: disc;
+}
+
+.list-blue li::marker {
+  color: rgb(37 99 235);
+}
+
+.tag-pill {
+  border-radius: 9999px;
+  background-color: rgb(219 234 254);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: rgb(30 64 175);
+}
+
+.language-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(219 234 254);
+  border-radius: 0.75rem;
+  background-color: rgba(239, 246, 255, 0.5);
+  padding: 0.625rem 0.75rem;
+}
+
+.language-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: rgb(51 65 85);
+}
+
+.language-level {
+  border: 1px solid rgb(219 234 254);
+  border-radius: 9999px;
+  background-color: rgb(255 255 255);
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  color: rgb(29 78 216);
+}
+
+.btn-solid {
+  padding-inline: 1rem !important;
+}
+
+.btn-solid-primary {
+  border-color: rgb(37 99 235) !important;
+  background-color: rgb(37 99 235) !important;
+  color: rgb(255 255 255) !important;
+}
+
+.btn-solid-primary:hover {
+  border-color: rgb(59 130 246) !important;
+  background-color: rgb(59 130 246) !important;
+}
+
+.btn-solid-dark {
+  border-color: rgb(12 10 9) !important;
+  background-color: rgb(12 10 9) !important;
+  color: rgb(255 255 255) !important;
+}
+
+.btn-solid-dark:hover {
+  border-color: rgb(41 37 36) !important;
+  background-color: rgb(41 37 36) !important;
+}
+
+.project-card-shell {
+  height: 100%;
+  border-radius: 0.75rem;
+  background-color: rgb(248 250 252);
+  box-shadow: none;
+}
+
+.project-card-shell,
+.project-card-shell .p-card-body,
+.project-card-shell .p-card-content {
+  height: 100%;
+}
+
+.project-card-shell .p-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .section-heading-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .timeline-grid {
+    grid-template-columns: 8.5rem 2rem minmax(0, 1fr);
+    column-gap: 1.5rem;
+  }
+
+  .timeline-date {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
