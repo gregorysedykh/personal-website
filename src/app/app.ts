@@ -47,13 +47,18 @@ export class App implements AfterViewInit {
     // start with no active section to ensure slider starts hidden, then sync to the correct section after view init
     this.activeSectionId = '';
     this.syncActiveSectionFromScroll();
-    requestAnimationFrame(() => this.updateSliderPosition());
-    window.setTimeout(() => this.updateSliderPosition(), 60);
+    this.ensureInitialSliderVisible();
+
+    // mobile browsers can finish font/layout work after initial paint
+    const fonts = (document as Document & { fonts?: { ready: Promise<unknown> } }).fonts;
+    if (fonts?.ready) {
+      void fonts.ready.then(() => this.ensureInitialSliderVisible());
+    }
   }
 
   @HostListener('window:load')
   onWindowLoad(): void {
-    this.updateSliderPosition();
+    this.ensureInitialSliderVisible();
   }
 
   @HostListener('window:scroll')
@@ -166,6 +171,16 @@ export class App implements AfterViewInit {
     this.sliderWidth = `${buttonRect.width}px`;
     this.sliderTransform = `translateX(${buttonRect.left - trackRect.left}px)`;
     this.sliderVisible = true;
+  }
+
+  private ensureInitialSliderVisible(attempt = 0): void {
+    this.syncActiveSectionFromScroll();
+    this.updateSliderPosition();
+    if (this.sliderVisible || attempt >= 120) {
+      return;
+    }
+
+    window.setTimeout(() => this.ensureInitialSliderVisible(attempt + 1), 50);
   }
 
   private startNavScrollLock(id: string): void {
