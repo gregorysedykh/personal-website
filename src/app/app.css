@@ -8,3 +8,21 @@
 :host ::ng-deep .site-menubar {
   padding: 0 !important;
 }
+
+.nav-slider {
+  pointer-events: none;
+  transition: transform 180ms ease, width 180ms ease, opacity 140ms ease;
+}
+
+.nav-button {
+  color: rgb(51 65 85);
+}
+
+.nav-button[data-active='true'] {
+  color: rgb(255 255 255);
+}
+
+.nav-button[data-active='false']:hover {
+  background-color: rgb(226 232 240);
+  color: rgb(15 23 42);
+}

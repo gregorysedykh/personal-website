@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-experience-section',
   standalone: true,
   template: `
-    <section id="experience" class="w-full min-h-[calc(100dvh-4.5rem)] py-14">
+    <section id="experience" class="w-full min-h-[100dvh] py-14 bg-blue-200">
       <div class="mx-auto max-w-6xl px-6">
         <div class="mt-3 flex items-center gap-4">
           <i class="pi pi-briefcase !text-[2.25rem] leading-none shrink-0"></i>
