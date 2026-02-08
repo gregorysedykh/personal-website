@@ -39,10 +39,6 @@ import { CardModule } from 'primeng/card';
                   <p class="mt-3 italic text-slate-700">Current average grade: 5.58/6</p>
                 </div>
 
-                <ul class="list-blue space-y-2">
-                  <li>Relevant coursework:</li>
-                </ul>
-
                 <div class="highlight-box">
                   <p class="font-bold">Master's thesis</p>
                   <p class="mt-1 italic">Detecting Misconfigurations in CVM Deployments</p>

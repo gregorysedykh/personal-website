@@ -12,11 +12,11 @@ import { CardModule } from 'primeng/card';
         <div class="space-y-4">
           <p-card class="surface-card-featured">
             <ng-template #content>
-              <div class="grid gap-6 p-5 sm:p-7 lg:grid-cols-2 lg:items-center">
+              <div class="grid gap-6 p-5">
                 <div>
                   <h2 class="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">Hi, I'm Gregory!</h2>
                   <p class="mt-4 max-w-3xl leading-7 text-slate-700">
-                    Text here
+                    MSc Computer Science candidate at University of Geneva, graduating Summer 2026. Core expertise in Cybersecurity and AI. Proficient in C#, Python and TypeScript. Quickly adapt to new tech stacks and eager to master emerging technologies. Seeking a full-time Software Engineering role.
                   </p>
                   <p class="mt-4 location-row">
                     <i class="pi pi-map-marker location-icon"></i>
@@ -29,16 +29,6 @@ import { CardModule } from 'primeng/card';
                     <a class="btn-solid btn-solid-dark" icon="pi pi-github" href="https://github.com/gregorysedykh" pButton target="_blank" rel="noopener noreferrer">
                       <span pButtonLabel>GitHub</span>
                     </a>
-                  </div>
-                </div>
-
-                <div class="mx-auto flex w-full justify-center lg:justify-end">
-                  <div class="h-60 w-60 overflow-hidden rounded-full border-4 border-blue-200 bg-white shadow-[0_10px_25px_-12px_rgba(30,64,175,0.55)] sm:h-48 sm:w-48">
-                    <img
-                      src="https://placehold.co/600x600/e2e8f0/334155"
-                      alt="Profile placeholder"
-                      class="h-full w-full object-cover"
-                    />
                   </div>
                 </div>
               </div>
@@ -58,8 +48,8 @@ import { CardModule } from 'primeng/card';
                         <span class="tag-pill">Python</span>
                         <span class="tag-pill">TypeScript</span>
                         <span class="tag-pill">JavaScript</span>
-                        <span class="tag-pill">Java</span>
                         <span class="tag-pill">SQL</span>
+                        <span class="tag-pill">Java</span>
                       </div>
                     </div>
 
@@ -85,8 +75,8 @@ import { CardModule } from 'primeng/card';
                         <span class="tag-pill">Docker</span>
                         <span class="tag-pill">Git</span>
                         <span class="tag-pill">GitHub</span>
-                        <span class="tag-pill">GitLab</span>
                         <span class="tag-pill">GitHub Actions</span>
+                        <span class="tag-pill">GitLab</span>
                       </div>
                     </div>
 

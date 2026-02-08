@@ -30,8 +30,8 @@ export class App implements AfterViewInit {
     { id: 'projects', label: 'Projects', icon: 'pi pi-folder-open' }
   ];
 
-  // set to the first item on init, but start as empty to ensure slider initialises correctly
-  activeSectionId = this.navItems[0]?.id ?? '';
+  // start empty so the slider stays hidden until the first scroll sync runs
+  activeSectionId = '';
   sliderWidth = '0px';
   sliderTransform = 'translateX(0px)';
   sliderVisible = false;
@@ -42,11 +42,9 @@ export class App implements AfterViewInit {
   // setup skipping intermediate scroll positions during smooth scroll triggered by nav clicks
   private navScrollLockId: string | null = null;
   private navScrollLockTimeoutId: number | null = null;
+  private isEnsuringInitialSliderVisible = false;
 
   ngAfterViewInit(): void {
-    // start with no active section to ensure slider starts hidden, then sync to the correct section after view init
-    this.activeSectionId = '';
-    this.syncActiveSectionFromScroll();
     this.ensureInitialSliderVisible();
 
     // mobile browsers can finish font/layout work after initial paint
@@ -132,8 +130,7 @@ export class App implements AfterViewInit {
     // if within 2px of the target section, consider scroll reached and clear lock
     const isAtTarget = Math.abs(section.getBoundingClientRect().top - this.getNavHeight()) <= 2;
     if (isAtTarget) {
-      this.clearNavScrollLock();
-      this.syncActiveSectionFromScroll();
+      this.releaseNavScrollLockAndSync();
     }
 
     return true;
@@ -214,9 +211,17 @@ export class App implements AfterViewInit {
    * @param attempt Number of attempts made to ensure slider visibility, used to limit retries and prevent infinite loops. Defaults to 0 on initial call.
    */
   private ensureInitialSliderVisible(attempt = 0): void {
+    if (attempt === 0) {
+      if (this.isEnsuringInitialSliderVisible) {
+        return;
+      }
+      this.isEnsuringInitialSliderVisible = true;
+    }
+
     this.syncActiveSectionFromScroll();
     this.updateSliderPosition();
     if (this.sliderVisible || attempt >= 120) {
+      this.isEnsuringInitialSliderVisible = false;
       return;
     }
 
@@ -237,9 +242,16 @@ export class App implements AfterViewInit {
     }
 
     this.navScrollLockTimeoutId = window.setTimeout(() => {
-      this.clearNavScrollLock();
-      this.syncActiveSectionFromScroll();
+      this.releaseNavScrollLockAndSync();
     }, 1200);
+  }
+
+  /**
+   * Releases the navigation scroll lock and syncs the active section to the current scroll position.
+   */
+  private releaseNavScrollLockAndSync(): void {
+    this.clearNavScrollLock();
+    this.syncActiveSectionFromScroll();
   }
 
   /**
