@@ -9,6 +9,20 @@
   padding: 0 !important;
 }
 
+.nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+}
+
+.brand {
+  white-space: nowrap;
+  font-size: 1.25rem !important;
+  line-height: 1.05;
+}
+
 .nav-slider {
   pointer-events: none;
   transition: transform 180ms ease, width 180ms ease, opacity 140ms ease;
@@ -25,4 +39,140 @@
 .nav-button[data-active='false']:hover {
   background-color: rgb(226 232 240);
   color: rgb(15 23 42);
+}
+
+.lang-dropdown {
+  position: relative;
+}
+
+.lang-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgb(203 213 225);
+  border-radius: 9999px;
+  background-color: rgb(248 250 252);
+  color: rgb(51 65 85);
+  cursor: pointer;
+  padding: 0.35rem 0.6rem;
+}
+
+.lang-dropdown-trigger:hover {
+  background-color: rgb(241 245 249);
+}
+
+.lang-dropdown-trigger .pi {
+  font-size: 0.65rem;
+}
+
+.lang-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  min-width: 5.75rem;
+  border: 1px solid rgb(203 213 225);
+  border-radius: 0.65rem;
+  background-color: rgb(255 255 255);
+  box-shadow: 0 12px 24px -12px rgba(15, 23, 42, 0.45);
+  overflow: hidden;
+  z-index: 40;
+}
+
+.lang-dropdown-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0;
+  background: transparent;
+  color: rgb(51 65 85);
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.5rem 0.65rem;
+}
+
+.lang-dropdown-item:hover {
+  background-color: rgb(241 245 249);
+}
+
+.lang-dropdown-item-active {
+  background-color: rgb(219 234 254);
+  color: rgb(30 64 175);
+}
+
+.lang-flag {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+@media (max-width: 639px) {
+  :host ::ng-deep .top-nav .section-container {
+    padding-inline: 0.75rem;
+  }
+
+  .brand {
+    font-size: 1rem !important;
+  }
+
+  .nav-controls {
+    gap: 0.25rem;
+  }
+
+  .nav-button {
+    width: 2rem !important;
+    height: 2rem !important;
+    padding: 0 !important;
+  }
+
+  .nav-button i {
+    font-size: 0.85rem;
+  }
+
+  .lang-dropdown-trigger {
+    gap: 0.25rem;
+    padding: 0.25rem 0.45rem;
+  }
+
+  .lang-dropdown-trigger .pi {
+    font-size: 0.55rem;
+  }
+
+  .lang-dropdown-menu {
+    min-width: 4.9rem;
+  }
+
+  .lang-dropdown-item {
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    padding: 0.45rem 0.5rem;
+  }
+
+  .lang-flag {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 389px) {
+  :host ::ng-deep .top-nav .section-container {
+    padding-inline: 0.5rem;
+  }
+
+  .brand {
+    font-size: 0.9rem !important;
+  }
+
+  .nav-controls {
+    gap: 0.15rem;
+  }
+
+  .nav-button {
+    width: 1.9rem !important;
+    height: 1.9rem !important;
+  }
+
+  .lang-dropdown-trigger {
+    padding: 0.22rem 0.38rem;
+  }
 }

@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "brand": "Gregory Sedykh",
+    "about": "About",
+    "education": "Education",
+    "experience": "Experience",
+    "projects": "Projects"
+  },
+  "language": {
+    "switcher": "Language selector",
+    "switchToEnglish": "Switch language to English",
+    "switchToFrench": "Switch language to French",
+    "switchToGerman": "Switch language to German"
+  },
+  "common": {
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "about": {
+    "hero": {
+      "title": "Hi, I'm Gregory!",
+      "description": "MSc Computer Science student at University of Geneva, graduating Summer 2026. Background in Cybersecurity and AI through advanced coursework and research. Proficient in C#, Python and TypeScript. Fast learner with a strong interest in exploring and applying new technologies. Seeking a full-time Software Engineering role.",
+      "location": "Geneva, Switzerland"
+    },
+    "skills": {
+      "title": "Technical Skills",
+      "programmingLanguages": "Programming Languages",
+      "frameworks": "Frameworks",
+      "databases": "Databases",
+      "devopsTools": "DevOps & Tools",
+      "aiTools": "AI Tools"
+    },
+    "languages": {
+      "title": "Languages",
+      "subtitle": "Overall proficiency (CEFR)",
+      "english": "English",
+      "french": "French",
+      "russian": "Russian",
+      "german": "German",
+      "ukrainian": "Ukrainian"
+    }
+  },
+  "education": {
+    "title": "Education",
+    "university": "University of Geneva",
+    "location": "Geneva, Switzerland",
+    "msc": {
+      "title": "Master of Science in Computer Science",
+      "grade": "Current average grade: 5.58/6",
+      "thesis": {
+        "label": "Master's thesis",
+        "title": "Detecting Misconfigurations in CVM Deployments",
+        "description": "Currently developing a Python-based static analysis tool to detect security misconfigurations in Terraform configurations for Confidential Virtual Machine (CVM) cloud deployments."
+      }
+    },
+    "bsc": {
+      "title": "Bachelor of Science in Computer Science",
+      "grade": "Grade: 5.36/6",
+      "coursework": "Relevant coursework: Software Engineering, Object Oriented Programming, Databases",
+      "thesis": {
+        "label": "Bachelor's thesis",
+        "title": "Diffusion Models in Depth: From a Theoretical and a Practical Perspective",
+        "description": "Authored a mathematical framework for generative AI and implemented a functional diffusion model using PyTorch."
+      }
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "internship": {
+      "date": "June 2019",
+      "role": "Internship",
+      "company": "BNP Paribas CIB",
+      "location": "Paris, France",
+      "summary": "2 week internship in the IT department",
+      "bullet1": "Introduction to software development and to a banking IT environment as a high school student",
+      "bullet2": "Basic GUI development in JS",
+      "bullet3": "Simple database management in SQL"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "nexus": {
+      "title": "Nexus",
+      "subtitle": "Personal project - in progress",
+      "description": "Building a scalable SPA using a .NET 10 Web API, EF and Angular with PostgreSQL for relational data and Docker for consistent, containerised deployment. Configured a GitHub Actions CI/CD pipeline."
+    },
+    "waf": {
+      "title": "Web Application Firewall",
+      "subtitle": "Project for Advanced Security course",
+      "description": "Deployed a Django app via Docker behind an Nginx reverse proxy integrated with ModSecurity and OWASP Core Rule Set."
+    }
+  }
+}

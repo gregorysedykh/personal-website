@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, ViewChild, inject } from '@angular/core';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { MenubarModule } from 'primeng/menubar';
+import { take } from 'rxjs';
 import { AboutComponent } from './components/about.component';
 import { EducationComponent } from './components/education.component';
 import { ExperienceComponent } from './components/experience.component';
@@ -7,31 +9,51 @@ import { ProjectsComponent } from './components/projects.component';
 
 interface NavItem {
   id: string;
-  label: string;
+  labelKey: string;
   icon: string;
 }
+
+interface LanguageOption {
+  code: LanguageCode;
+  shortLabel: string;
+  flag: string;
+  ariaLabelKey: string;
+}
+
+type LanguageCode = 'en' | 'fr' | 'de';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MenubarModule, AboutComponent, EducationComponent, ExperienceComponent, ProjectsComponent],
+  imports: [MenubarModule, TranslocoPipe, AboutComponent, EducationComponent, ExperienceComponent, ProjectsComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements AfterViewInit {
+export class App implements AfterViewInit, OnDestroy {
+  private readonly translocoService = inject(TranslocoService);
+  private readonly supportedLanguages: LanguageCode[] = ['en', 'fr', 'de'];
+  private navLayoutObserver?: ResizeObserver;
 
   // nav tracker for slider positioning and dimensions
   @ViewChild('navTrack') private navTrack?: ElementRef<HTMLDivElement>;
+  @ViewChild('languageMenu') private languageMenu?: ElementRef<HTMLDivElement>;
 
   readonly navItems: NavItem[] = [
-    { id: 'about', label: 'About', icon: 'pi pi-user' },
-    { id: 'education', label: 'Education', icon: 'pi pi-graduation-cap' },
-    { id: 'experience', label: 'Experience', icon: 'pi pi-briefcase' },
-    { id: 'projects', label: 'Projects', icon: 'pi pi-folder-open' }
+    { id: 'about', labelKey: 'nav.about', icon: 'pi pi-user' },
+    { id: 'education', labelKey: 'nav.education', icon: 'pi pi-graduation-cap' },
+    { id: 'experience', labelKey: 'nav.experience', icon: 'pi pi-briefcase' },
+    { id: 'projects', labelKey: 'nav.projects', icon: 'pi pi-folder-open' }
+  ];
+  readonly languageOptions: LanguageOption[] = [
+    { code: 'en', shortLabel: 'EN', flag: '🇬🇧', ariaLabelKey: 'language.switchToEnglish' },
+    { code: 'fr', shortLabel: 'FR', flag: '🇫🇷', ariaLabelKey: 'language.switchToFrench' },
+    { code: 'de', shortLabel: 'DE', flag: '🇩🇪', ariaLabelKey: 'language.switchToGerman' }
   ];
 
   // start empty so the slider stays hidden until the first scroll sync runs
   activeSectionId = '';
+  activeLanguage: LanguageCode = this.resolveInitialLanguage();
+  isLanguageMenuOpen = false;
   sliderWidth = '0px';
   sliderTransform = 'translateX(0px)';
   sliderVisible = false;
@@ -44,7 +66,12 @@ export class App implements AfterViewInit {
   private navScrollLockTimeoutId: number | null = null;
   private isEnsuringInitialSliderVisible = false;
 
+  constructor() {
+    this.translocoService.setActiveLang(this.activeLanguage);
+  }
+
   ngAfterViewInit(): void {
+    this.setupNavLayoutObserver();
     this.ensureInitialSliderVisible();
 
     // mobile browsers can finish font/layout work after initial paint
@@ -52,6 +79,10 @@ export class App implements AfterViewInit {
     if (fonts?.ready) {
       void fonts.ready.then(() => this.ensureInitialSliderVisible());
     }
+  }
+
+  ngOnDestroy(): void {
+    this.navLayoutObserver?.disconnect();
   }
 
   // when window is loaded, ensure slider is correctly positioned in case fonts or other resources caused layout shifts after initial paint. 
@@ -86,6 +117,21 @@ export class App implements AfterViewInit {
     this.syncActiveSectionFromScroll();
   }
 
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.isLanguageMenuOpen) {
+      return;
+    }
+
+    const menu = this.languageMenu?.nativeElement;
+    const target = event.target;
+    if (!menu || !(target instanceof Node) || menu.contains(target)) {
+      return;
+    }
+
+    this.isLanguageMenuOpen = false;
+  }
+
   /**
    * Scrolls smoothly to a given section by ID
    * @param id ID of the section to scroll to
@@ -105,6 +151,41 @@ export class App implements AfterViewInit {
     this.startNavScrollLock(id);
     this.setActiveSection(id);
     window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  setLanguage(language: LanguageCode): void {
+    this.isLanguageMenuOpen = false;
+    if (this.activeLanguage === language) {
+      return;
+    }
+
+    this.activeLanguage = language;
+    this.translocoService.setActiveLang(language);
+    this.refreshNavbarLayoutAfterLanguageChange();
+    this.translocoService
+      .load(language)
+      .pipe(take(1))
+      .subscribe(() => this.refreshNavbarLayoutAfterLanguageChange());
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('lang', language);
+    }
+  }
+
+  toggleLanguageMenu(event: MouseEvent): void {
+    event.stopPropagation();
+    this.isLanguageMenuOpen = !this.isLanguageMenuOpen;
+  }
+
+  selectLanguageFromMenu(language: LanguageCode, event: MouseEvent): void {
+    event.stopPropagation();
+    this.setLanguage(language);
+  }
+
+  get activeLanguageOption(): LanguageOption {
+    return (
+      this.languageOptions.find((option) => option.code === this.activeLanguage) ??
+      this.languageOptions[0]
+    );
   }
 
   /**
@@ -278,5 +359,62 @@ export class App implements AfterViewInit {
   private getNavHeight(): number {
     const nav = document.querySelector('.top-nav');
     return nav instanceof HTMLElement ? nav.offsetHeight : 68;
+  }
+
+  private resolveInitialLanguage(): LanguageCode {
+    if (typeof localStorage !== 'undefined') {
+      const stored = localStorage.getItem('lang');
+      if (stored && this.isSupportedLanguage(stored)) {
+        return stored;
+      }
+    }
+
+    if (typeof navigator !== 'undefined') {
+      const browserLanguage = navigator.language.split('-')[0]?.toLowerCase();
+      if (browserLanguage && this.isSupportedLanguage(browserLanguage)) {
+        return browserLanguage;
+      }
+    }
+
+    return 'en';
+  }
+
+  private isSupportedLanguage(language: string): language is LanguageCode {
+    return this.supportedLanguages.includes(language as LanguageCode);
+  }
+
+  private setupNavLayoutObserver(): void {
+    if (typeof ResizeObserver === 'undefined') {
+      return;
+    }
+
+    const track = this.navTrack?.nativeElement;
+    if (!track) {
+      return;
+    }
+
+    this.navLayoutObserver?.disconnect();
+    this.navLayoutObserver = new ResizeObserver(() => this.updateSliderPosition());
+    this.navLayoutObserver.observe(track);
+
+    const buttons = track.querySelectorAll<HTMLElement>('.nav-button');
+    for (const button of buttons) {
+      this.navLayoutObserver.observe(button);
+    }
+  }
+
+  private refreshNavbarLayoutAfterLanguageChange(): void {
+    const sync = () => {
+      window.dispatchEvent(new Event('resize'));
+      this.updateSliderPosition();
+    };
+
+    requestAnimationFrame(() => {
+      sync();
+      requestAnimationFrame(sync);
+    });
+
+    window.setTimeout(sync, 120);
+    window.setTimeout(sync, 240);
   }
 }

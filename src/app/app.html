@@ -5,36 +5,68 @@
         <ng-template #start>
           <button
             type="button"
-            class="cursor-pointer border-0 bg-transparent text-2xl font-semibold text-slate-900"
+            class="brand cursor-pointer border-0 bg-transparent text-2xl font-semibold text-slate-900"
             (click)="scrollToSection('about')"
           >
-            Gregory Sedykh
+            {{ 'nav.brand' | transloco }}
           </button>
         </ng-template>
 
         <ng-template #end>
-          <div #navTrack class="relative flex items-center gap-1 sm:gap-3">
-            <span
-              aria-hidden="true"
-              class="nav-slider absolute inset-y-0 left-0 rounded-md bg-blue-600"
-              [style.width]="sliderWidth"
-              [style.transform]="sliderTransform"
-              [class.opacity-0]="!sliderVisible"
-              [class.opacity-100]="sliderVisible"
-            ></span>
-            @for (item of navItems; track item.id) {
+          <div class="nav-controls">
+            <div #navTrack class="relative flex items-center gap-1 sm:gap-3">
+              <span
+                aria-hidden="true"
+                class="nav-slider absolute inset-y-0 left-0 rounded-md bg-blue-600"
+                [style.width]="sliderWidth"
+                [style.transform]="sliderTransform"
+                [class.opacity-0]="!sliderVisible"
+                [class.opacity-100]="sliderVisible"
+              ></span>
+              @for (item of navItems; track item.id) {
+                <button
+                  type="button"
+                  [attr.data-section-id]="item.id"
+                  [attr.data-active]="activeSectionId === item.id"
+                  [attr.aria-label]="item.labelKey | transloco"
+                  class="nav-button relative z-10 inline-flex h-9 w-9 items-center justify-center rounded-md transition sm:h-auto sm:w-auto sm:gap-2 sm:px-3 sm:py-2 sm:text-sm sm:font-medium"
+                  (click)="scrollToSection(item.id)"
+                >
+                  <i [class]="item.icon"></i>
+                  <span class="hidden sm:inline">{{ item.labelKey | transloco }}</span>
+                </button>
+              }
+            </div>
+
+            <div #languageMenu class="lang-dropdown">
               <button
                 type="button"
-                [attr.data-section-id]="item.id"
-                [attr.data-active]="activeSectionId === item.id"
-                [attr.aria-label]="item.label"
-                class="nav-button relative z-10 inline-flex h-9 w-9 items-center justify-center rounded-md transition sm:h-auto sm:w-auto sm:gap-2 sm:px-3 sm:py-2 sm:text-sm sm:font-medium"
-                (click)="scrollToSection(item.id)"
+                class="lang-dropdown-trigger"
+                [attr.aria-label]="'language.switcher' | transloco"
+                [attr.aria-expanded]="isLanguageMenuOpen"
+                (click)="toggleLanguageMenu($event)"
               >
-                <i [class]="item.icon"></i>
-                <span class="hidden sm:inline">{{ item.label }}</span>
+                <span class="lang-flag">{{ activeLanguageOption.flag }}</span>
+                <i class="pi" [class.pi-chevron-down]="!isLanguageMenuOpen" [class.pi-chevron-up]="isLanguageMenuOpen"></i>
               </button>
-            }
+
+              @if (isLanguageMenuOpen) {
+                <div class="lang-dropdown-menu" role="menu">
+                  @for (option of languageOptions; track option.code) {
+                    <button
+                      type="button"
+                      class="lang-dropdown-item"
+                      [class.lang-dropdown-item-active]="activeLanguage === option.code"
+                      [attr.aria-label]="option.ariaLabelKey | transloco"
+                      (click)="selectLanguageFromMenu(option.code, $event)"
+                    >
+                      <span class="lang-flag">{{ option.flag }}</span>
+                      <span>{{ option.shortLabel }}</span>
+                    </button>
+                  }
+                </div>
+              }
+            </div>
           </div>
         </ng-template>
       </p-menubar>

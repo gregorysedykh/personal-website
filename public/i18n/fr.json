@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "brand": "Gregory Sedykh",
+    "about": "À propos",
+    "education": "Formation",
+    "experience": "Expérience",
+    "projects": "Projets"
+  },
+  "language": {
+    "switcher": "Sélecteur de langue",
+    "switchToEnglish": "Passer la langue en anglais",
+    "switchToFrench": "Passer la langue en français",
+    "switchToGerman": "Passer la langue en allemand"
+  },
+  "common": {
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "about": {
+    "hero": {
+      "title": "Bonjour, je suis Gregory !",
+      "description": "Étudiant de Master en sciences informatiques à l'Université de Genève, diplôme prévu en été 2026. Compétences approfondies en cybersécurité et IA. Maîtrise de C#, Python et TypeScript. Apprentissage rapide et fort intérêt pour les nouvelles technologies. À la recherche d'un poste de Software Engineer à plein temps.",
+      "location": "Genève, Suisse"
+    },
+    "skills": {
+      "title": "Compétences techniques",
+      "programmingLanguages": "Langages de programmation",
+      "frameworks": "Frameworks",
+      "databases": "Bases de données",
+      "devopsTools": "DevOps et outils",
+      "aiTools": "Outils IA"
+    },
+    "languages": {
+      "title": "Langues",
+      "subtitle": "Niveau global (CECR)",
+      "english": "Anglais",
+      "french": "Français",
+      "russian": "Russe",
+      "german": "Allemand",
+      "ukrainian": "Ukrainien"
+    }
+  },
+  "education": {
+    "title": "Formation",
+    "university": "Université de Genève",
+    "location": "Genève, Suisse",
+    "msc": {
+      "title": "Master en sciences informatiques",
+      "grade": "Moyenne actuelle : 5.58/6",
+      "thesis": {
+        "label": "Travail de master",
+        "title": "Detecting Misconfigurations in CVM Deployments",
+        "description": "Développement d'un outil d'analyse statique en Python visant à détecter les erreurs de configuration dans les fichiers Terraform lors du déploiement de machines virtuelles confidentielles (CVM) sur le cloud."
+      }
+    },
+    "bsc": {
+      "title": "Bachelor en sciences informatiques",
+      "grade": "Note : 5.36/6",
+      "coursework": "Cours pertinents : Génie logiciel, Concepts et langages orientés objets, Bases de données",
+      "thesis": {
+        "label": "Travail de bachelor",
+        "title": "Diffusion Models in Depth: From a Theoretical and a Practical Perspective",
+        "description": "Élaboration d'un cadre mathématique dédié à l'IA générative et implémentation d'un modèle de diffusion fonctionnel avec PyTorch."
+      }
+    }
+  },
+  "experience": {
+    "title": "Expérience",
+    "internship": {
+      "date": "Juin 2019",
+      "role": "Stage",
+      "company": "BNP Paribas CIB",
+      "location": "Paris, France",
+      "summary": "Stage de 2 semaines dans le département IT",
+      "bullet1": "Introduction au développement logiciel et à l'environnement IT bancaire en tant que lycéen",
+      "bullet2": "Développement GUI de base en JS",
+      "bullet3": "Gestion simple de base de données en SQL"
+    }
+  },
+  "projects": {
+    "title": "Projets",
+    "nexus": {
+      "title": "Nexus",
+      "subtitle": "Projet personnel - en cours",
+      "description": "Construction d'une SPA évolutive avec une Web API .NET 10, EF et Angular, PostgreSQL pour les données relationnelles et Docker pour un déploiement conteneurisé cohérent. Pipeline CI/CD configuré avec GitHub Actions."
+    },
+    "waf": {
+      "title": "Web Application Firewall",
+      "subtitle": "Projet pour le cours de Advanced Security",
+      "description": "Mise en place d'une application Django via Docker derrière un reverse proxy Nginx, avec intégration de ModSecurity et de l'OWASP Core Rule Set pour la protection contre les vulnérabilités web."
+    }
+  }
+}

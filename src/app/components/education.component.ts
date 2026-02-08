@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-education-section',
   standalone: true,
-  imports: [CardModule, ButtonModule],
+  imports: [CardModule, ButtonModule, TranslocoPipe],
   template: `
     <section id="education" class="page-section">
       <div class="section-container">
         <div class="section-heading">
           <i class="pi pi-graduation-cap section-heading-icon"></i>
-          <h2 class="section-heading-title">Education</h2>
+          <h2 class="section-heading-title">{{ 'education.title' | transloco }}</h2>
         </div>
 
         <div class="timeline-grid">
@@ -30,32 +31,31 @@ import { CardModule } from 'primeng/card';
             <ng-template #content>
               <div class="space-y-4">
                 <div>
-                  <h3 class="text-xl font-semibold text-slate-900">Master of Science in Computer Science</h3>
-                  <p class="mt-1 text-blue-600">University of Geneva</p>
+                  <h3 class="text-xl font-semibold text-slate-900">{{ 'education.msc.title' | transloco }}</h3>
+                  <p class="mt-1 text-blue-600">{{ 'education.university' | transloco }}</p>
                   <p class="mt-1 location-row">
                     <i class="pi pi-map-marker location-icon"></i>
-                    <span>Geneva, Switzerland</span>
+                    <span>{{ 'education.location' | transloco }}</span>
                   </p>
-                  <p class="mt-3 italic text-slate-700">Current average grade: 5.58/6</p>
+                  <p class="mt-3 italic text-slate-700">{{ 'education.msc.grade' | transloco }}</p>
                 </div>
 
                 <div class="highlight-box">
-                  <p class="font-bold">Master's thesis</p>
-                  <p class="mt-1 italic">Detecting Misconfigurations in CVM Deployments</p>
+                  <p class="font-bold">{{ 'education.msc.thesis.label' | transloco }}</p>
+                  <p class="mt-1 italic">{{ 'education.msc.thesis.title' | transloco }}</p>
                   <p class="mt-2 text-slate-700">
-                    Currently developing a Python-based static analysis tool to detect security misconfigurations in Terraform configurations for Confidential Virtual Machine (CVM) cloud deployments.
+                    {{ 'education.msc.thesis.description' | transloco }}
                   </p>
                   <div class="mt-3">
                     <a
                       class="btn-solid btn-solid-dark"
                       icon="pi pi-github"
+                      [label]="'common.github' | transloco"
                       href="https://github.com/gregorysedykh"
                       pButton
                       target="_blank"
                       rel="noopener noreferrer"
-                    >
-                      <span pButtonLabel>GitHub</span>
-                    </a>
+                    ></a>
                   </div>
                 </div>
               </div>
@@ -75,36 +75,35 @@ import { CardModule } from 'primeng/card';
             <ng-template #content>
               <div class="space-y-4">
                 <div>
-                  <h3 class="text-xl font-semibold text-slate-900">Bachelor of Science in Computer Science</h3>
-                  <p class="mt-1 text-blue-600">University of Geneva</p>
+                  <h3 class="text-xl font-semibold text-slate-900">{{ 'education.bsc.title' | transloco }}</h3>
+                  <p class="mt-1 text-blue-600">{{ 'education.university' | transloco }}</p>
                   <p class="mt-1 location-row">
                     <i class="pi pi-map-marker location-icon"></i>
-                    <span>Geneva, Switzerland</span>
+                    <span>{{ 'education.location' | transloco }}</span>
                   </p>
-                  <p class="mt-3 italic text-slate-700">Grade: 5.36/6</p>
+                  <p class="mt-3 italic text-slate-700">{{ 'education.bsc.grade' | transloco }}</p>
                 </div>
 
                 <ul class="list-blue space-y-2">
-                  <li>Relevant coursework: <i>Software Engineering, Objected Oriented Programming, Databases</i></li>
+                  <li>{{ 'education.bsc.coursework' | transloco }}</li>
                 </ul>
 
                 <div class="highlight-box">
-                  <p class="font-bold">Bachelor's thesis</p>
-                  <p class="mt-1 italic">Diffusion Models in Depth: From a Theoretical and a Practical Perspective</p>
+                  <p class="font-bold">{{ 'education.bsc.thesis.label' | transloco }}</p>
+                  <p class="mt-1 italic">{{ 'education.bsc.thesis.title' | transloco }}</p>
                   <p class="mt-2 text-slate-700">
-                    Authored a mathematical framework for generative AI and implemented a functional diffusion model using PyTorch.
+                    {{ 'education.bsc.thesis.description' | transloco }}
                   </p>
                   <div class="mt-3">
                     <a
                       class="btn-solid btn-solid-dark"
                       icon="pi pi-github"
+                      [label]="'common.github' | transloco"
                       href="https://github.com/gregorysedykh/diffusion-models-in-depth"
                       pButton
                       target="_blank"
                       rel="noopener noreferrer"
-                    >
-                      <span pButtonLabel>GitHub</span>
-                    </a>
+                    ></a>
                   </div>
                 </div>
               </div>
