@@ -60,7 +60,7 @@
       "thesis": {
         "label": "Travail de bachelor",
         "title": "Diffusion Models in Depth: From a Theoretical and a Practical Perspective",
-        "description": "Élaboration d'un cadre mathématique dédié à l'IA générative et implémentation d'un modèle de diffusion fonctionnel avec PyTorch."
+        "description": "Rédaction d'une analyse mathématique sur les modèles de diffusion (IA générative) et implémentation d'un modèle fonctionnel sous PyTorch."
       }
     }
   },
@@ -82,7 +82,7 @@
     "nexus": {
       "title": "Nexus",
       "subtitle": "Projet personnel - en cours",
-      "description": "Construction d'une SPA évolutive avec une Web API .NET 10, EF et Angular, PostgreSQL pour les données relationnelles et Docker pour un déploiement conteneurisé cohérent. Pipeline CI/CD configuré avec GitHub Actions."
+      "description": "Construction d'une web app avec une Web API ASP.NET Core, EF et Angular, PostgreSQL pour les données relationnelles et Docker pour un déploiement conteneurisé cohérent. Pipeline CI/CD configuré avec GitHub Actions."
     },
     "waf": {
       "title": "Web Application Firewall",

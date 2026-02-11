@@ -60,7 +60,7 @@
       "thesis": {
         "label": "Bachelor's thesis",
         "title": "Diffusion Models in Depth: From a Theoretical and a Practical Perspective",
-        "description": "Authored a mathematical framework for generative AI and implemented a functional diffusion model using PyTorch."
+        "description": "Authored a mathematical analysis for diffusion models (generative AI) and implemented a functional diffusion model using PyTorch."
       }
     }
   },
@@ -82,7 +82,7 @@
     "nexus": {
       "title": "Nexus",
       "subtitle": "Personal project - in progress",
-      "description": "Building a scalable SPA using a .NET 10 Web API, EF and Angular with PostgreSQL for relational data and Docker for consistent, containerised deployment. Configured a GitHub Actions CI/CD pipeline."
+      "description": "Building a web app with ASP.NET Core Web API, EF and Angular, together with PostgreSQL for relational data and Docker for consistent, containerised deployment. Configured a GitHub Actions CI/CD pipeline."
     },
     "waf": {
       "title": "Web Application Firewall",
