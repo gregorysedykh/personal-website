@@ -23,16 +23,13 @@
   line-height: 1.05;
 }
 
-.nav-slider {
-  pointer-events: none;
-  transition: transform 180ms ease, width 180ms ease, opacity 140ms ease;
-}
-
 .nav-button {
   color: rgb(51 65 85);
+  white-space: nowrap;
 }
 
 .nav-button[data-active='true'] {
+  background-color: rgb(37 99 235);
   color: rgb(255 255 255);
 }
 

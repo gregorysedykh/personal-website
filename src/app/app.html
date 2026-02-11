@@ -14,22 +14,14 @@
 
         <ng-template #end>
           <div class="nav-controls">
-            <div #navTrack class="relative flex items-center gap-1 sm:gap-3">
-              <span
-                aria-hidden="true"
-                class="nav-slider absolute inset-y-0 left-0 rounded-md bg-blue-600"
-                [style.width]="sliderWidth"
-                [style.transform]="sliderTransform"
-                [class.opacity-0]="!sliderVisible"
-                [class.opacity-100]="sliderVisible"
-              ></span>
+            <div class="flex items-center gap-1 sm:gap-3">
               @for (item of navItems; track item.id) {
                 <button
                   type="button"
                   [attr.data-section-id]="item.id"
                   [attr.data-active]="activeSectionId === item.id"
                   [attr.aria-label]="item.labelKey | transloco"
-                  class="nav-button relative z-10 inline-flex h-9 w-9 items-center justify-center rounded-md transition sm:h-auto sm:w-auto sm:gap-2 sm:px-3 sm:py-2 sm:text-sm sm:font-medium"
+                  class="nav-button relative z-10 inline-flex h-auto w-auto items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition"
                   (click)="scrollToSection(item.id)"
                 >
                   <i [class]="item.icon"></i>
